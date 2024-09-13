@@ -1,0 +1,72 @@
+%% Common packages
+\usepackage{unicode-math} % Unicode math
+\setmainfont{STIXTwoText} % FONTS
+\setmathfont{STIXTwoMath} % FONTS
+\usepackage{amsmath, amsthm}
+\usepackage[noEnd=false, endLComment=]{algpseudocodex} % Algorithm typesetting
+\usepackage{algorithm} % Algorithm float environment
+\usepackage{thmtools} % Theorem environments
+\usepackage[table]{xcolor} % Color
+\usepackage{setspace} % Line spacing
+\usepackage{centernot} % Negated symbols
+\usepackage{enumerate} % Numbered lists
+\usepackage{float} % helps with figure placement
+\usepackage{booktabs} % For tables
+% ... for theorems
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}[section]
+\newtheorem{obs}{Observation}[section]
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}{Lemma}[section]
+\newtheorem*{prop}{Proposition}
+\newcommand{\claim}{\textbf{Claim: }}
+\newcommand{\nclaim}[1]{\textbf{(#1) Claim:}}
+\newcommand{\answer}{\textbf{Answer }}
+\newcommand{\nanswer}[1]{\textbf{(#1) Answer:}}
+\newcommand{\question}{\textbf{Question: }}
+\newcommand{\nquestion}[1]{\textbf{(#1) Question:}}
+\newcommand{\pf}[1]{\begin{proof}#1\end{proof}}
+
+\theoremstyle{definition}
+\newtheorem*{rem}{Remark}
+
+% ... for referencing
+% \renewcommand{\algref}[1]{Algorithm~\ref{alg:#1}}
+\renewcommand{\eqref}[1]{(\ref{eq:#1})}
+\newcommand{\shortalgref}[1]{Alg.~\ref{alg:#1}}
+\newcommand{\appendref}[1]{Appendix~\ref{append:#1}}
+\newcommand{\corref}[1]{Corollary~\ref{cor:#1}}
+\newcommand{\defref}[1]{Definition~\ref{def:#1}}
+\newcommand{\figref}[1]{Figure~\ref{fig:#1}}
+\newcommand{\figrefLabel}[1]{Figure \ref{#1}}
+\newcommand{\mlref}[2]{\ref{ml:#1}}
+\newcommand{\mlrangeref}[2]{\mlref{#1}--\mlref{#2}}
+\newcommand{\lemref}[1]{Lemma~\ref{lem:#1}}
+\newcommand{\shortlemref}[1]{Lem.~\ref{lem:#1}}
+\newcommand{\shortlineref}[2]{Line~\ref{line:#2-#1}}
+\newcommand{\shortlinerangeref}[3]{Lines~\ref{line:#3-#1}--\ref{line:#3-#2}}
+\newcommand{\partref}[2]{\thmref{#1}(\ref{part:#1-#2})}
+\newcommand{\partinref}[2]{(\ref{part:#1-#2})}
+\newcommand{\partdefref}[2]{Part (\ref{def:#1-#2}) of \defref{#1}}
+\newcommand{\secref}[1]{Section~\ref{sec:#1}}
+\newcommand{\thmref}[1]{Theorem~\ref{thm:#1}}
+\newcommand{\queref}[1]{Question~\ref{q:#1}}
+\newcommand{\obsref}[1]{Observation~\ref{obs:#1}}
+
+
+% Algorithmic commands
+\renewcommand{\algorithmicrequire}{\textbf{Input:}}
+\renewcommand{\algorithmicensure}{\textbf{Output:}}
+
+% COLORS
+\usepackage{color}
+\definecolor{darkorchid}{rgb}{0.6,0.196,0.8}
+\definecolor{cobalt}{rgb}{0.0, 0.28, 0.67}
+\newcommand{\payAttention}[3]{{[[\color{#1}{\textbf{#2: }}\color{#1}{#3}]]}}
+\newcommand{\camera}[1]{}
+\newcommand{\todo}[1]{\payAttention{red}{TODO}{#1}}
+\newcommand{\xSays}[3]{\payAttention{#1}{#2 Says}{#3}}
+\newcommand{\eli}[1]{\xSays{cobalt}{Eli}{#1}}
+\newcommand{\jack}[1]{\xSays{red}{Jack}{#1}}
+\newcommand{\journal}[1]{}
+

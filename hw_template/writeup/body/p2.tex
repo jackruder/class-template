@@ -1,0 +1,80 @@
+\section{Problem 2}
+
+\claim{
+	An array of integers $A[1...n]$ can be sorted in $O(n+D)$ time, where
+	$D = \max_i A[i] - \min_i A[i]$ (allowing for use of extra storage).
+}
+
+\newcommand{\Nbox}[1]{
+	\BeginBox[draw=blue,dashed,very thin]
+	#1
+	\BoxedString[draw=blue,very thin]{\color{blue}{\(O(n)\)}}
+	\EndBox
+}
+\newcommand{\Dbox}[1]{
+	\BeginBox[draw=red,dashed,very thin]
+	#1
+	\BoxedString[draw=red,very thin]{\color{red}{\(O(D+n)\)}}
+	\EndBox
+}
+
+\pf{
+First, see the following algorithm. The key observation
+is that there are at most \(D + 1\) distinct values in \(A\).
+This allows us to count the number of occurrences of each value,
+and then fill in the sorted array by iterating over the counts.
+\begin{algorithm}
+	\caption{Sort an array of integers in \(O(n + D)\) time.}
+	\begin{algorithmic}[1]
+		\Require{Array \(A[1\ldots n]\), \(D = \max_i A[i] - \min_i A[i]\), \(A[i] \in \mathbb{Z}\)}
+		\Ensure{Sorted array \(A[1\ldots n]\)}
+		\Nbox{
+			\State Find \(a_{min} = \min_i A[i]\) and \(a_{max} = \max_i A[i]\).
+		}
+		\LComment{Count the number of occurrences of each value in \(A\)}
+		\Dbox{
+			\State Initialize \(C[1\ldots D+1]\) as an array of \(D + 1\) zeros.
+		}
+		\Nbox{
+			\For{\(j \in \{1 \dots n\}\)}
+			\State \(i \gets A[j] - a_{min} + 1\) \Comment{ex. \(C[1]\) is the number of \(a_{min}\) seen in \(A\)}
+			\State \(C[i] \gets C[i] + 1\)
+			\EndFor
+		}
+		\LComment{Fill in the sorted array}
+		\Nbox{\State Initialize \(S[1..n]\) as en empty array.}
+		\State \(start \gets 1\)
+		\Dbox{
+			\For{\(i \in \{1, \dots D + 1\}\)}
+			\State \(end \gets start + C[i]\) \Comment{find the contiguous blocks of \(S\)}
+			\State \(d \gets a_{min} + i - 1\) \Comment{\(d\) is the value as seen in \(A\)}
+			\State \Call{fill}{\(S[start \ldots end]\), \(d\)} \Comment{populate \(S\) with \(d\) in the given range}
+			\State \(start \gets end + 1\)
+			\EndFor
+		}
+
+		\State \Return \(S\)
+	\end{algorithmic}
+\end{algorithm}
+
+We proceed to prove the runtime of the algorithm. The algorithm
+first finds the minimum and maximum values in the array, which trivially is
+\(O(n)\) time. Next, the algorithm initializes an array of size \(D + 1\)
+with zeros, which takes \(O(D) \subset O(D+n)\) time. The algorithm then counts
+the number of occurrences of each value in the array using \(O(n)\) time.
+To examine the loop on line 11, see that \(C[i] = end_i - start_i\)
+where \(end_i\) and \(start_i\) are the values of the variables at line 12 of the loop.
+We have \(C[i]\) as the size of the contiguous block of \(S\).
+Observe that
+\(\sum_{i}C[i] = n\). Then, since each call to \textsc{fill} takes \(O(end - start)\) time,
+the total running time of the work \textsc{fill} performs is
+\begin{align*}
+	\sum_{i}^{D+1} O(end_i - start_i) & = \sum_{i}^{D+1} O(C[i]) \\
+	                                  & = O(n).                  \\
+\end{align*}
+Since there are \(D + 1\) iterations of the loop, the total running time of the loop
+outside of the \textsc{fill} function is \(O(D)\). Therefore, the running time of the loop is \(O(n + D)\),
+allowing us to conclude that the running time of the entire algorithm is \(O(D+n)\).
+
+}
+

@@ -1,0 +1,27 @@
+# Latex
+.pdf
+.aux
+.log
+.synctex.gz
+.bbl
+.blg
+.out
+.toc
+.nav
+.snm
+.vrb
+.fdb_latexmk
+.fls
+
+# python
+__pycache__
+*.pyc
+*.pyo
+*.pyd
+*.pyz
+*.pywz
+
+
+# rust
+target/
+
