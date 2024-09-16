@@ -1,17 +1,17 @@
 # Latex
-.pdf
-.aux
-.log
-.synctex.gz
-.bbl
-.blg
-.out
-.toc
-.nav
-.snm
-.vrb
-.fdb_latexmk
-.fls
+*.pdf
+*.aux
+*.log
+*.synctex.gz
+*.bbl
+*.blg
+*.out
+*.toc
+*.nav
+*.snm
+*.vrb
+*.fdb_latexmk
+*.fls
 
 # python
 __pycache__
